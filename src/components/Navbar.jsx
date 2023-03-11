@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Button, Menu, Typography, Avatar } from "antd";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import {
   HomeOutlined,
   MoneyCollectOutlined,
@@ -30,10 +30,37 @@ const Navbar = () => {
     }
   }, [screenSize]);
 
+  const [current, setCurrent] = useState("home");
+  const location = useLocation();
+
+  const handleClick = (e) => {
+    setCurrent(e.key);
+  };
+
+  useEffect(() => {
+    const path = location.pathname;
+    switch (path) {
+      case "/":
+        setCurrent("home");
+        break;
+      case "/cryptocurrencies":
+        setCurrent("crypto");
+        break;
+      case "/exchanges":
+        setCurrent("exchanges");
+        break;
+      case "/news":
+        setCurrent("news");
+        break;
+      default:
+        setCurrent("home");
+    }
+  }, [location]);
+
   return (
     <div className="nav-container">
       <div className="logo-container">
-        <Avatar src={icon} size="large" />
+        <Avatar src={icon} size={50} />
         <Typography.Title level={2} className="logo">
           <Link to="/">Cryptoverse</Link>
         </Typography.Title>
@@ -45,7 +72,7 @@ const Navbar = () => {
         </Button>
       </div>
       {activeMenu && (
-        <Menu theme="dark">
+        <Menu theme="dark" onClick={handleClick} selectedKeys={[current]}>
           <Menu.Item key="home" icon={<HomeOutlined />}>
             <Link to={"/"}>Home</Link>
           </Menu.Item>

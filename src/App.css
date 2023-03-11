@@ -54,7 +54,7 @@ a:hover {
   margin: 0 0 0 15px;
 }
 .logo a {
-  color: white;
+  color: #702b92;
 }
 .menu-control-container {
   display: none !important;
@@ -129,6 +129,7 @@ a:hover {
   }
   .show-more {
     font-size: 1.3rem !important;
+    color: #702b92 !important;
   }
 }
 
