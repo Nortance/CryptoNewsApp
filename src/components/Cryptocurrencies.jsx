@@ -53,33 +53,41 @@ const Cryptocurrencies = ({ simplified }) => {
                   }
                 >
                   <p>
-                    <strong>Price:</strong> ${Number(currency.price).toFixed(2)}
+                    <strong>Price:</strong> $
+                    {Number(parseFloat(currency.price)).toFixed(2)}
                   </p>
                   <p>
                     <strong>Change 24h:</strong>{" "}
                     <span
                       style={
-                        Number(currency.change) < 0
+                        parseFloat(currency.change) < 0
                           ? { color: "red" }
                           : { color: "green" }
                       }
                     >
-                      {millify(Number(currency.change))}%
+                      {typeof currency.change === "number"
+                        ? millify(parseFloat(currency.change), { precision: 2 })
+                        : currency.change}
+                      %
                     </span>
                   </p>
                   <p>
                     <strong>24h Volume:</strong>{" "}
-                    {millify(Number(currency.volume), {
-                      precision: 2,
-                      decimalSeparator: ",",
-                    })}
+                    {typeof currency.volume === "number"
+                      ? millify(parseFloat(currency.volume), {
+                          precision: 2,
+                          decimalSeparator: ",",
+                        })
+                      : currency.volume}
                   </p>
                   <p>
                     <strong>Market Cap:</strong>{" "}
-                    {millify(Number(currency.marketCap), {
-                      precision: 2,
-                      decimalSeparator: ".",
-                    })}
+                    {typeof currency.marketCap === "number"
+                      ? millify(parseFloat(currency.marketCap), {
+                          precision: 2,
+                          decimalSeparator: ".",
+                        })
+                      : currency.marketCap}
                   </p>
                 </Card>
               </Link>
