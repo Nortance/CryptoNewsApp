@@ -12,6 +12,8 @@ import {
 } from "./components";
 import "./App.css";
 
+const { Title } = Typography;
+
 const App = () => {
   return (
     <div className="app">
@@ -35,18 +37,25 @@ const App = () => {
           </div>
         </Layout>
         <div className="footer">
-          <Typography.Title
-            level={5}
-            style={{ color: "white", textAlign: "center" }}
-          >
+          <Title level={5} style={{ color: "white", textAlign: "center" }}>
             Copyright © 2021
-            <Link to="/">Cryptoverse Inc.</Link> <br />
+            <Link style={{ color: "#702B92" }} to="/">
+              {" "}
+              Cryptoverse Inc.
+            </Link>{" "}
+            <br />
             All Rights Reserved.
-          </Typography.Title>
+          </Title>
           <Space>
-            <Link to={"/"}>Home</Link>
-            <Link to={"exchanges"}>Exchanges</Link>
-            <Link to={"/news"}>News</Link>
+            <Link style={{ color: "#702B92" }} to={"/"}>
+              Home
+            </Link>
+            <Link style={{ color: "#702B92" }} to={"exchanges"}>
+              Exchanges
+            </Link>
+            <Link style={{ color: "#702B92" }} to={"/news"}>
+              News
+            </Link>
           </Space>
         </div>
       </div>

@@ -75,13 +75,13 @@ a:hover {
 
 @media screen and (max-width: 1300px) {
   .main {
-    margin-left: 50px;
+    margin-left: 20px;
   }
 }
 
 @media screen and (max-width: 1170px) {
   .main {
-    margin-left: 50px;
+    margin-left: 20px;
   }
 }
 

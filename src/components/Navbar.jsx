@@ -57,6 +57,21 @@ const Navbar = () => {
     }
   }, [location]);
 
+  const StyledMenuItem = ({ icon, text, link, selected, onClick }) => (
+    <Menu.Item
+      key={text.toLowerCase()}
+      icon={icon}
+      style={{
+        backgroundColor: selected ? "#702B92" : "",
+        "&:hover": {
+          backgroundColor: selected ? "#702B92" : "#001529",
+        },
+      }}
+      onClick={onClick}
+    >
+      <Link to={link}>{text}</Link>
+    </Menu.Item>
+  );
   return (
     <div className="nav-container">
       <div className="logo-container">
@@ -72,19 +87,35 @@ const Navbar = () => {
         </Button>
       </div>
       {activeMenu && (
-        <Menu theme="dark" onClick={handleClick} selectedKeys={[current]}>
-          <Menu.Item key="home" icon={<HomeOutlined />}>
-            <Link to={"/"}>Home</Link>
-          </Menu.Item>
-          <Menu.Item key="crypto" icon={<FundOutlined />}>
-            <Link to={"/cryptocurrencies"}>Cryptocurrencies</Link>
-          </Menu.Item>
-          <Menu.Item key="exchanges" icon={<MoneyCollectOutlined />}>
-            <Link to={"/exchanges"}>Exchanges</Link>
-          </Menu.Item>
-          <Menu.Item key="news" icon={<BulbOutlined />}>
-            <Link to={"/news"}>News</Link>
-          </Menu.Item>
+        <Menu theme="dark" selectedKeys={[current]}>
+          <StyledMenuItem
+            icon={<HomeOutlined />}
+            text="Home"
+            link="/"
+            selected={current === "home"}
+            onClick={() => setCurrent("home")}
+          />
+          <StyledMenuItem
+            icon={<FundOutlined />}
+            text="Cryptocurrencies"
+            link="/cryptocurrencies"
+            selected={current === "crypto"}
+            onClick={() => setCurrent("crypto")}
+          />
+          <StyledMenuItem
+            icon={<MoneyCollectOutlined />}
+            text="Exchanges"
+            link="/exchanges"
+            selected={current === "exchanges"}
+            onClick={() => setCurrent("exchanges")}
+          />
+          <StyledMenuItem
+            icon={<BulbOutlined />}
+            text="News"
+            link="/news"
+            selected={current === "news"}
+            onClick={() => setCurrent("news")}
+          />
         </Menu>
       )}
     </div>
