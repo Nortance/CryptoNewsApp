@@ -21,6 +21,7 @@ import {
 } from "../services/cryptoApi";
 // import Loader from "./Loader";
 import LineChart from "./LineChart";
+import Loader from "./Loader";
 
 const { Title, Text } = Typography;
 const { Option } = Select;
@@ -103,7 +104,7 @@ const CryptoDetails = () => {
     },
   ];
 
-  if (isFetching) return "Loading...";
+  if (isFetching) return <Loader />;
 
   return (
     <>
