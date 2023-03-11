@@ -33,10 +33,7 @@ const CryptoDetails = () => {
     coinId,
     timePeriod,
   });
-
   const cryptoDetails = data?.data?.coin;
-
-  console.log(coinHistory);
 
   const time = ["3h", "24h", "7d", "30d", "1y", "3m", "3y", "5y"];
 
@@ -130,8 +127,17 @@ const CryptoDetails = () => {
             <Option key={option}>{option}</Option>
           ))}
         </Select>
+        <p
+          style={{
+            color: "red",
+            fontSize: "12px",
+            marginTop: "10px",
+            marginLeft: "7px",
+          }}
+        >
+          Only 24h availible due to API cost
+        </p>
         <LineChart
-          timePeriod={timePeriod}
           coinHistory={coinHistory}
           currentPrice={Number(cryptoDetails.price).toFixed(2)}
           coinName={cryptoDetails?.name}

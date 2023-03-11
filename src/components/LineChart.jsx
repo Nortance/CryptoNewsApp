@@ -1,18 +1,29 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Line } from "react-chartjs-2";
 import { Col, Row, Typography } from "antd";
 import { Chart } from "chart.js/auto";
 
 const { Title } = Typography;
 
-const LineChart = ({ coinHistory, currentPrice, coinName, timePeriod }) => {
-  const coinPrice = [];
-  const coinTimestamp = [];
+const LineChart = ({ coinHistory, currentPrice, coinName }) => {
+  const [coinPrice, setCoinPrice] = useState([]);
+  const [coinTimestamp, setCoinTimestamp] = useState([]);
+  const [chartKey, setChartKey] = useState(Date.now());
 
-  coinHistory?.data?.history?.forEach((item) => {
-    coinPrice.push(item.price);
-    coinTimestamp.push(new Date(item.timestamp).toLocaleDateString());
-  });
+  useEffect(() => {
+    const price = [];
+    const timestamp = [];
+
+    coinHistory?.data?.history?.forEach((item) => {
+      price.push(item.price);
+      const date = new Date(item.timestamp * 1000);
+      timestamp.push(date.toLocaleDateString());
+    });
+
+    setCoinPrice(price);
+    setCoinTimestamp(timestamp);
+    setChartKey(Date.now());
+  }, [coinHistory]);
 
   const data = {
     labels: coinTimestamp,
@@ -30,7 +41,9 @@ const LineChart = ({ coinHistory, currentPrice, coinName, timePeriod }) => {
   const options = {
     scales: {
       y: {
-        beginAtZero: true,
+        tics: {
+          beginAtZero: true,
+        },
       },
     },
   };
@@ -54,7 +67,7 @@ const LineChart = ({ coinHistory, currentPrice, coinName, timePeriod }) => {
           </Title>
         </Col>
       </Row>
-      <Line data={data} options={options} plugins={[Chart]} />
+      <Line key={chartKey} data={data} options={options} />
     </>
   );
 };
