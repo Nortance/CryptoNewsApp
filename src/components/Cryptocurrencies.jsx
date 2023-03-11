@@ -53,7 +53,7 @@ const Cryptocurrencies = ({ simplified }) => {
                   }
                 >
                   <p>
-                    <strong>Price:</strong> {Number(currency.price).toFixed(2)}
+                    <strong>Price:</strong> ${Number(currency.price).toFixed(2)}
                   </p>
                   <p>
                     <strong>Change 24h:</strong>{" "}
@@ -64,12 +64,12 @@ const Cryptocurrencies = ({ simplified }) => {
                           : { color: "green" }
                       }
                     >
-                      {millify(currency.change)} %
+                      {millify(currency.change)}%
                     </span>
                   </p>
                   <p>
                     <strong>24h Volume:</strong>{" "}
-                    {millify(currency.marketCap, {
+                    {millify(currency.volume, {
                       precision: 2,
                       decimalSeparator: ",",
                     })}
