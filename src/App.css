@@ -66,6 +66,9 @@ a:hover {
   border: none !important;
 }
 
+.heading {
+  margin-left: 20px;
+}
 .loader {
   height: 81vh;
   display: flex;
@@ -144,6 +147,7 @@ a:hover {
   flex-direction: column;
   border-bottom: 1px solid var(--border);
   padding-top: 20px;
+  padding-left: 20px;
   padding-bottom: 20px;
   gap: 10px;
 }
@@ -284,6 +288,7 @@ a:hover {
 @media screen and (max-width: 500px) {
   .heading {
     margin-top: 20px;
+    margin-left: 20px;
   }
 }
 

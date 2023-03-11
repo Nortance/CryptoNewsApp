@@ -10,10 +10,10 @@ const { Text, Title } = Typography;
 const { Panel } = Collapse;
 
 const Exchanges = () => {
-  const { data, isFetching } = useGetExchangesQuery();
+  // const { data, isFetching } = useGetExchangesQuery();
   // const exchangesList = data?.data?.exchanges;
   // Note: To access this endpoint you need premium plan
-  if (isFetching) return <Loader />;
+  // if (isFetching) return <Loader />;
 
   return (
     <>
@@ -29,11 +29,11 @@ const Exchanges = () => {
             <Col span={6}>Change</Col>
           </Row>
           <Row>
-            {exchangesList.map((exchange) => (
-              <Col span={24}>
+            {exchangesList.map((exchange, index) => (
+              <Col span={24} key={index}>
                 <Collapse>
                   <Panel
-                    key={exchange.uuid}
+                    key={exchange.name + exchange.volume}
                     showArrow={false}
                     header={
                       <Row key={exchange.uuid}>
@@ -51,9 +51,13 @@ const Exchanges = () => {
                             <strong>{exchange.name}</strong>
                           </Text>
                         </Col>
-                        <Col span={6}>${millify(exchange.volume)}</Col>
-                        <Col span={6}>{millify(exchange.numberOfMarkets)}</Col>
-                        <Col span={6}>{millify(exchange.marketShare)}%</Col>
+                        <Col span={6}>${millify(Number(exchange.volume))}</Col>
+                        <Col span={6}>
+                          {millify(Number(exchange.numberOfMarkets))}
+                        </Col>
+                        <Col span={6}>
+                          {millify(Number(exchange.marketShare))}%
+                        </Col>
                       </Row>
                     }
                   >

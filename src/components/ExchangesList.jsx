@@ -3,7 +3,7 @@ const names = [
   "Woofbase",
   "DoggieX",
   "Fido Trading",
-  "Golden Paws Exchange",
+  "Golden Paws",
   "Pawtrading",
   "Barking Exchange",
   "Hound Market",
