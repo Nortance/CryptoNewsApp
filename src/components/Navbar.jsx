@@ -97,7 +97,7 @@ const Navbar = () => {
           />
           <StyledMenuItem
             icon={<FundOutlined />}
-            text="Cryptocurrencies"
+            text="Cryptocurrencie"
             link="/cryptocurrencies"
             selected={current === "crypto"}
             onClick={() => setCurrent("crypto")}
